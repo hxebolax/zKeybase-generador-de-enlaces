@@ -198,7 +198,7 @@ class VentanaPrincipal(wx.Dialog):
 
 		super(VentanaPrincipal, self).__init__(parent, -1, pos = pos, size = (WIDTH, HEIGHT))
 
-		self.SetTitle(_("{} {}".format(addonHandler.Addon(os.path.join(globalVars.appArgs.configPath, "addons", "zKeybase")).name, addonHandler.Addon(os.path.join(globalVars.appArgs.configPath, "addons", "zKeybase")).version)))
+		self.SetTitle("{} {}".format(addonHandler.Addon(os.path.join(globalVars.appArgs.configPath, "addons", "zKeybase")).name, addonHandler.Addon(os.path.join(globalVars.appArgs.configPath, "addons", "zKeybase")).version))
 
 		self.frame = frameAddon
 		self.root = root
