@@ -336,7 +336,15 @@ class HiloComplemento(Thread):
 
 	def run(self):
 		def windowsApp():
-			p = comandoRun(["keybase.exe", "config", "get"])
+			try:
+				p = comandoRun(["keybase.exe", "config", "get"])
+			except FileNotFoundError:
+				msg = \
+_("""No se pudo tener acceso a Keybase.exe.
+
+Asegúrese de tener instalada la aplicación y configurada la unidad virtual.""")
+				ui.message(msg)
+				return
 			if p[0]:
 				diccionario = json.loads(p[1])
 				usuario = diccionario.get("current_user")
