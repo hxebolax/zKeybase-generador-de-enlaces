@@ -336,6 +336,11 @@ class HiloComplemento(Thread):
 
 	def run(self):
 		def windowsApp():
+			msg_not_virtual = \
+_("""No se encontró la unidad virtual de Keybase.
+
+Asegúrese que el servicio de Keybase esta ejecutándose y tiene configurada la opción de montar la unidad virtual.""")
+
 			try:
 				p = comandoRun(["keybase.exe", "config", "get"])
 			except FileNotFoundError:
@@ -350,15 +355,14 @@ Asegúrese de tener instalada la aplicación y configurada la unidad virtual."""
 				usuario = diccionario.get("current_user")
 				unidad = diccionario.get("mountdir")
 				root = os.path.join(unidad, "\public", usuario)
+				if not os.path.isdir(root):
+					ui.message(msg_not_virtual)
+					return
 				self._main = VentanaPrincipal(gui.mainFrame, self.frame, usuario, root)
 				gui.mainFrame.prePopup()
 				self._main.Show()
 			else:
-				msg = \
-_("""No se encontró la unidad virtual de Keybase.
-
-Asegúrese que el servicio de Keybase esta ejecutándose y tiene configurada la opción de montar la unidad virtual.""")
-				ui.message(msg)
+				ui.message(msg_not_virtual)
 
 		if self.opcion == 1:
 			wx.CallAfter(windowsApp)
