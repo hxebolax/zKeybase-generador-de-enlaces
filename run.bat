@@ -4,4 +4,4 @@ echo Creando complemento...
 scons --clean
 scons
 scons pot
-zKeybase-0.3.nvda-addon
+zKeybase-0.4.nvda-addon

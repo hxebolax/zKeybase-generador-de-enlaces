@@ -1,1 +1,2 @@
-* Se sustituyen los espacios por %20 al generar los enlaces.
+* Se agrego la tecla Intro del teclado numérico para entrar a directorios.
+* Se agrego la posibilidad de borrar directorios y archivos.

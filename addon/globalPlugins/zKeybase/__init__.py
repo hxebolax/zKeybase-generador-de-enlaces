@@ -7,7 +7,9 @@ import addonHandler
 import globalVars
 import ui
 import gui
+import speech
 import os
+import shutil
 import wx
 import subprocess
 import json
@@ -16,6 +18,7 @@ import ctypes.wintypes
 from scriptHandler import script
 from tones import beep
 from threading import Thread
+from time import sleep
 from ctypes.wintypes import BOOL, HWND, HANDLE, HGLOBAL, UINT, LPVOID
 from ctypes import c_size_t as SIZE_T
 
@@ -159,6 +162,35 @@ def getList(lista, ruta):
 			ficheros.append("{} (F)".format(i))
 	return directorios + ficheros
 
+def remove(path):
+	if os.path.isfile(path) or os.path.islink(path):
+		try:
+			os.remove(path)
+			return True
+		except Exception as e:
+			return False
+	elif os.path.isdir(path):
+		try:
+			shutil.rmtree(path, ignore_errors=True)
+			return True
+		except Exception as e:
+			return False
+
+# Inicio funciones obtenidas del complemento whatsapp de Gerardo Kessler
+# Función para romper la cadena de verbalización y callar al sintetizador durante el tiempo especificado
+def mute(time, msg= False):
+	if msg:
+		ui.message(msg)
+		sleep(0.1)
+	Thread(target=killSpeak, args=(time,), daemon= True).start()
+
+def killSpeak(time):
+	if speech.getState().speechMode == speech.SpeechMode.off: return
+	speech.setSpeechMode(speech.SpeechMode.off)
+	sleep(time)
+	speech.setSpeechMode(speech.SpeechMode.talk)
+# Fin funciones obtenidas del complemento whatsapp de Gerardo Kessler
+
 def disableInSecureMode(decoratedCls):
 	if globalVars.appArgs.secure:
 		return globalPluginHandler.GlobalPlugin
@@ -208,6 +240,8 @@ class VentanaPrincipal(wx.Dialog):
 		self.baseDirectorio = "https://keybase.pub/{}/{}"
 		self.baseFichero = "https://{}.keybase.pub/{}?dl=1"
 		self.frame.IS_WINON = True
+		self.delEvento = False
+		self.delEventoCancelado = False
 
 		self.panel_1 = wx.Panel(self, wx.ID_ANY)
 
@@ -251,7 +285,6 @@ class VentanaPrincipal(wx.Dialog):
 			self.listbox_ficheros.SetSelection(self.posicion[-1])
 		else:
 			self.listbox_ficheros.SetSelection(0)
-
 		self.listbox_ficheros.SetFocus()
 
 	def onListBox(self, event):
@@ -259,19 +292,28 @@ class VentanaPrincipal(wx.Dialog):
 		texto = obj.GetString(obj.GetSelection())
 
 		if texto == _("Sin ficheros"):
-			if len(self.ruta) == 1:
+			if len(self.ruta) == 1: return
+
+		if event.GetKeyCode() == wx.WXK_RETURN or event.GetKeyCode() == wx.WXK_NUMPAD_ENTER: # Accede a directorios
+			if self.delEventoCancelado:
+				if texto == _("Sin ficheros") or texto[-4:] == " (D)" or texto[-4:] == " (F)":
+					self.delEventoCancelado = False
+					event.Skip()
+					return
+			if self.delEvento:
+				self.delEvento = False
+				event.Skip()
 				return
 
-		if event.GetKeyCode() == wx.WXK_RETURN:
-			if texto[-4:]  == " (D)":
+			if texto[-4:] == " (D)":
 				self.ruta.append(os.path.join(self.ruta[-1], texto[:-4]))
 				self.posicion.append(obj.GetSelection())
 				self.cargaDatos()
 			else:
 				event.Skip()
 
-		elif event.GetKeyCode() == wx.WXK_BACK:
-			if texto[-4:]  == " (D)":
+		elif event.GetKeyCode() == wx.WXK_BACK: # Regresa al directorio anterior
+			if texto[-4:] == " (D)":
 				if len(self.ruta) == 1:
 					beep(200,150)
 					return
@@ -292,11 +334,10 @@ class VentanaPrincipal(wx.Dialog):
 			wx.LaunchDefaultBrowser('file://' + addonHandler.Addon(os.path.join(globalVars.appArgs.configPath, "addons", "zKeybase")).getDocFilePath(), flags=0)
 
 		elif event.GetKeyCode() == wx.WXK_F2: # Generar enlace
-			if texto == _("Sin ficheros"):
-				return
+			if texto == _("Sin ficheros"): return
 
 			listaFichero = os.path.join(self.ruta[-1], texto[:-4]).split(os.sep)
-			if texto[-4:]  == " (D)":
+			if texto[-4:] == " (D)":
 				put(self.baseDirectorio.format(self.usuario, '/'.join(listaFichero[3:]).replace(" ", "%20")))
 				ui.message(_("Se a copiado la URL para el directorio de Keybase al portapapeles."))
 			else:
@@ -304,10 +345,50 @@ class VentanaPrincipal(wx.Dialog):
 				ui.message(_("Se a copiado la URL para el archivo de Keybase al portapapeles."))
 
 		elif event.GetKeyCode() == wx.WXK_F3: # Propiedades
-			if texto == _("Sin ficheros"):
-				return
+			if texto == _("Sin ficheros"): return
 			getAccionMenuContextual("properties", os.path.join(self.ruta[-1], texto[:-4]))
 
+		elif event.GetKeyCode() == wx.WXK_DELETE or event.GetKeyCode() == wx.WXK_NUMPAD_DELETE: # Borra ficheros y directorios.
+			if texto == _("Sin ficheros"): return
+
+			listaFichero = os.path.join(self.ruta[-1], texto[:-4]).split(os.sep)
+			if texto[-4:] == " (D)":
+				msg = \
+_("""ADVERTENCIA:
+
+Esta acción no es reversible.
+
+¿Esta seguro que desea borrar el directorio {}?""").format(listaFichero[-1])
+			else:
+				msg = \
+_("""ADVERTENCIA:
+
+Esta acción no es reversible.
+
+¿Esta seguro que desea borrar el fichero {}?""").format(listaFichero[-1])
+			msg = wx.MessageDialog(None, msg, _("Pregunta"), wx.YES_NO | wx.NO_DEFAULT | wx.ICON_QUESTION)
+			ret = msg.ShowModal()
+			if ret == wx.ID_YES:
+				msg.Destroy
+				if texto[-4:] == " (D)":
+					if remove(os.path.abspath("/".join(listaFichero))):
+						ui.message(_("Se borro correctamente el directorio {}").format(listaFichero[-1]))
+						mute(0.1)
+						self.delEvento = True
+						self.cargaDatos(True)
+					else:
+						ui.message(_("No se pudo borrar el directorio {}").format(listaFichero[-1]))
+				else:
+					if remove(os.path.abspath("/".join(listaFichero))):
+						ui.message(_("Se borro correctamente el fichero {}").format(listaFichero[-1]))
+						mute(0.1)
+						self.delEvento = True
+						self.cargaDatos(True)
+					else:
+						ui.message(_("No se pudo borrar el fichero {}").format(listaFichero[-1]))
+			else: # Dialogo de confimación negativo.
+				msg.Destroy
+				self.delEventoCancelado = True
 		elif event.GetKeyCode() == wx.WXK_F5: # Refrescar archivos y directorios
 			del self.ruta[:]
 			del self.posicion[:]

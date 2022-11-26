@@ -42,6 +42,16 @@ El documento principal no se modificará siendo una orientación para el usuario
 
 El usuario es el responsable de revisar esta sección para estar informados de los cambios.
 
+## Versión 0.4.
+
+* Se agrego la tecla Intro del teclado numérico para entrar a directorios.
+
+* Se agrego la posibilidad de borrar directorios y archivos.
+
+Ahora al pulsar la tecla (DEL)tanto del teclado normal como del numérico se borrará el directorio o fichero que tengamos enfocado.
+
+Si el directorio tiene archivos se borrará todo su contenido.
+
 ## Versión 0.3.
 
 * Se sustituyen los espacios por %20 al generar los enlaces.
