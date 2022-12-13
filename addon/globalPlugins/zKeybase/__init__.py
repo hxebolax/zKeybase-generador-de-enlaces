@@ -208,7 +208,7 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 		if not self.IS_WINON:
 			HiloComplemento(self, 1).start()
 		else:
-			ui.message("ya hay una instancia de zKeybase abierta")
+			ui.message(_("ya hay una instancia de zKeybase abierta"))
 
 class VentanaPrincipal(wx.Dialog):
 	def _calculatePosition(self, width, height):
@@ -310,7 +310,11 @@ class VentanaPrincipal(wx.Dialog):
 				self.posicion.append(obj.GetSelection())
 				self.cargaDatos()
 			else:
-				event.Skip()
+				if texto == _("Sin ficheros"): return
+				try:
+					getAccionMenuContextual("open", os.path.join(self.ruta[-1], texto[:-4]))
+				except:
+					ui.message(_("No se pudo abrir el archivo."))
 
 		elif event.GetKeyCode() == wx.WXK_BACK: # Regresa al directorio anterior
 			if texto[-4:] == " (D)":
@@ -346,7 +350,10 @@ class VentanaPrincipal(wx.Dialog):
 
 		elif event.GetKeyCode() == wx.WXK_F3: # Propiedades
 			if texto == _("Sin ficheros"): return
-			getAccionMenuContextual("properties", os.path.join(self.ruta[-1], texto[:-4]))
+			try:
+				getAccionMenuContextual("properties", os.path.join(self.ruta[-1], texto[:-4]))
+			except:
+				ui.message(_("No se pudieron obtener las propiedades."))
 
 		elif event.GetKeyCode() == wx.WXK_DELETE or event.GetKeyCode() == wx.WXK_NUMPAD_DELETE: # Borra ficheros y directorios.
 			if texto == _("Sin ficheros"): return
