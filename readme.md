@@ -42,6 +42,12 @@ El documento principal no se modificará siendo una orientación para el usuario
 
 El usuario es el responsable de revisar esta sección para estar informados de los cambios.
 
+## Versión 0.5.
+
+* Se agrego la posibilidad de ejecutar un archivo con su programa asociado al pulsar intro.
+
+Ahora si pulsamos intro encima de un archivo y si dicho archivo tiene una aplicación asociada, se ejecutará dicho archivo. Los ejecutables se ejecutarán como tal.
+
 ## Versión 0.4.
 
 * Se agrego la tecla Intro del teclado numérico para entrar a directorios.

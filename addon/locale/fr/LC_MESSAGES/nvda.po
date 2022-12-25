@@ -1,0 +1,151 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the 'zKeybase' package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: 'zKeybase' '0.4'\n"
+"Report-Msgid-Bugs-To: 'nvda-translations@groups.io'\n"
+"POT-Creation-Date: 2022-12-13 21:17+0100\n"
+"PO-Revision-Date: 2022-12-24 23:08+0100\n"
+"Last-Translator: Rémy Ruiz <remyruiz@gmail.com>\n"
+"Language-Team: \n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 1.8.8\n"
+"X-Poedit-Bookmarks: -1,15,-1,-1,-1,-1,-1,-1,-1,-1\n"
+
+#. Add-on summary, usually the user visible name of the addon.
+#. Translators: Summary for this add-on
+#. to be shown on installation and add-on information found in Add-ons Manager.
+#: buildVars.py:23
+msgid "zKeybase generador de enlaces"
+msgstr "zKeybase Générateur de liens"
+
+#. Add-on description
+#. Translators: Long description to be shown for this add-on on add-on information from add-ons manager
+#: buildVars.py:26
+msgid ""
+"Generador de enlaces para compartir de Keybase tanto de directorios como de "
+"ficheros. Solo de la carpeta public y algunas utilidades para facilitar el "
+"uso de la unidad virtual."
+msgstr ""
+"Générateur de liens publics Keybase pour les répertoires et les fichiers. "
+"Seulement à partir du dossier public et certains utilitaires pour faciliter "
+"l'utilisation du lecteur virtuel."
+
+#: addon\globalPlugins\zKeybase\__init__.py:206
+msgid "Abrir la ventana de zKeybase para generar enlaces"
+msgstr "Ouvrir la fenêtre zKeybase pour créer des liens"
+
+#: addon\globalPlugins\zKeybase\__init__.py:211
+msgid "ya hay una instancia de zKeybase abierta"
+msgstr "Il y a déjà une instance de zKeybase ouverte"
+
+#: addon\globalPlugins\zKeybase\__init__.py:250
+msgid "&Directorios y ficheros en Keybase:"
+msgstr "Répertoires et fichiers &dans Keybase:"
+
+#. Generar enlace
+#. Propiedades
+#. Borra ficheros y directorios.
+#: addon\globalPlugins\zKeybase\__init__.py:274
+#: addon\globalPlugins\zKeybase\__init__.py:280
+#: addon\globalPlugins\zKeybase\__init__.py:294
+#: addon\globalPlugins\zKeybase\__init__.py:299
+#: addon\globalPlugins\zKeybase\__init__.py:313
+#: addon\globalPlugins\zKeybase\__init__.py:341
+#: addon\globalPlugins\zKeybase\__init__.py:352
+#: addon\globalPlugins\zKeybase\__init__.py:359
+msgid "Sin ficheros"
+msgstr "Aucun fichier"
+
+#: addon\globalPlugins\zKeybase\__init__.py:317
+msgid "No se pudo abrir el archivo."
+msgstr "Impossible d'ouvrir le fichier."
+
+#: addon\globalPlugins\zKeybase\__init__.py:346
+msgid "Se a copiado la URL para el directorio de Keybase al portapapeles."
+msgstr "L'URL du répertoire Keybase a été copiée dans le presse-papiers."
+
+#: addon\globalPlugins\zKeybase\__init__.py:349
+msgid "Se a copiado la URL para el archivo de Keybase al portapapeles."
+msgstr "L'URL du fichier Keybase a été copiée dans le presse-papiers."
+
+#: addon\globalPlugins\zKeybase\__init__.py:356
+msgid "No se pudieron obtener las propiedades."
+msgstr "Impossible d'obtenir les propriétés."
+
+#: addon\globalPlugins\zKeybase\__init__.py:364
+msgid ""
+"ADVERTENCIA:\n"
+"\n"
+"Esta acción no es reversible.\n"
+"\n"
+"¿Esta seguro que desea borrar el directorio {}?"
+msgstr ""
+"Avertissement:\n"
+"\n"
+"Cette action ne peut pas être annulée.\n"
+"\n"
+"Êtes-vous sûr de vouloir supprimer le répertoire {} ?"
+
+#: addon\globalPlugins\zKeybase\__init__.py:371
+msgid ""
+"ADVERTENCIA:\n"
+"\n"
+"Esta acción no es reversible.\n"
+"\n"
+"¿Esta seguro que desea borrar el fichero {}?"
+msgstr ""
+"Avertissement:\n"
+"\n"
+"Cette action ne peut pas être annulée.\n"
+"\n"
+"Êtes-vous sûr de vouloir supprimer le fichier {} ?"
+
+#: addon\globalPlugins\zKeybase\__init__.py:376
+msgid "Pregunta"
+msgstr "Question"
+
+#: addon\globalPlugins\zKeybase\__init__.py:382
+msgid "Se borro correctamente el directorio {}"
+msgstr "Le répertoire {} a été supprimé avec succès"
+
+#: addon\globalPlugins\zKeybase\__init__.py:387
+msgid "No se pudo borrar el directorio {}"
+msgstr "Impossible de supprimer le répertoire {}"
+
+#: addon\globalPlugins\zKeybase\__init__.py:390
+msgid "Se borro correctamente el fichero {}"
+msgstr "Le fichier {} a été supprimé avec succès"
+
+#: addon\globalPlugins\zKeybase\__init__.py:395
+msgid "No se pudo borrar el fichero {}"
+msgstr "Impossible de supprimer le fichier {}"
+
+#: addon\globalPlugins\zKeybase\__init__.py:428
+msgid ""
+"No se encontró la unidad virtual de Keybase.\n"
+"\n"
+"Asegúrese que el servicio de Keybase esta ejecutándose y tiene configurada "
+"la opción de montar la unidad virtual."
+msgstr ""
+"Lecteur virtuel Keybase introuvable.\n"
+"\n"
+"Assurez-vous que le service Keybase est en cours d'exécution et que vous "
+"pouvez monter le lecteur virtuel configuré."
+
+#: addon\globalPlugins\zKeybase\__init__.py:436
+msgid ""
+"No se pudo tener acceso a Keybase.exe.\n"
+"\n"
+"Asegúrese de tener instalada la aplicación y configurada la unidad virtual."
+msgstr ""
+"Impossible avoir accès à Keybase.exe.\n"
+"\n"
+"Assurez-vous que l'application est installée et le lecteur virtuel configuré."

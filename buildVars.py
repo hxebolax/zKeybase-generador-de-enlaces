@@ -25,7 +25,7 @@ addon_info = {
 	# Translators: Long description to be shown for this add-on on add-on information from add-ons manager
 	"addon_description": _("Generador de enlaces para compartir de Keybase tanto de directorios como de ficheros. Solo de la carpeta public y algunas utilidades para facilitar el uso de la unidad virtual."),
 	# version
-	"addon_version": "0.4.1",
+	"addon_version": "0.5",
 	# Author(s)
 	"addon_author": u"Héctor J. Benítez Corredera <xebolax@gmail.com>",
 	# URL for the add-on documentation support
