@@ -42,6 +42,10 @@ El documento principal no se modificará siendo una orientación para el usuario
 
 El usuario es el responsable de revisar esta sección para estar informados de los cambios.
 
+## Versión 0.6.
+
+* Añadida compatibilidad con NVDA 2023.1
+
 ## Versión 0.5.
 
 * Se agrego la posibilidad de ejecutar un archivo con su programa asociado al pulsar intro.

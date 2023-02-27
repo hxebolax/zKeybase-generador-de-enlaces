@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 'zKeybase' '0.4'\n"
 "Report-Msgid-Bugs-To: 'nvda-translations@groups.io'\n"
-"POT-Creation-Date: 2022-11-26 18:11+0400\n"
-"PO-Revision-Date: 2022-11-26 18:26+0400\n"
+"POT-Creation-Date: 2022-12-25 11:18+0100\n"
+"PO-Revision-Date: 2022-12-25 11:21+0100\n"
 "Last-Translator: Dragan Ratkovich\n"
 "Language-Team: \n"
 "Language: en\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.2\n"
+"X-Generator: Poedit 3.1\n"
 
 #. Add-on summary, usually the user visible name of the addon.
 #. Translators: Summary for this add-on
@@ -40,6 +40,10 @@ msgstr ""
 msgid "Abrir la ventana de zKeybase para generar enlaces"
 msgstr "Open the zKeybase window to create links"
 
+#: addon\globalPlugins\zKeybase\__init__.py:211
+msgid "ya hay una instancia de zKeybase abierta"
+msgstr "there is already an instance of zKeybase open"
+
 #: addon\globalPlugins\zKeybase\__init__.py:250
 msgid "&Directorios y ficheros en Keybase:"
 msgstr "&Directories and files in Keybase:"
@@ -51,21 +55,30 @@ msgstr "&Directories and files in Keybase:"
 #: addon\globalPlugins\zKeybase\__init__.py:280
 #: addon\globalPlugins\zKeybase\__init__.py:294
 #: addon\globalPlugins\zKeybase\__init__.py:299
-#: addon\globalPlugins\zKeybase\__init__.py:337
-#: addon\globalPlugins\zKeybase\__init__.py:348
+#: addon\globalPlugins\zKeybase\__init__.py:313
+#: addon\globalPlugins\zKeybase\__init__.py:341
 #: addon\globalPlugins\zKeybase\__init__.py:352
+#: addon\globalPlugins\zKeybase\__init__.py:359
 msgid "Sin ficheros"
 msgstr "No files"
 
-#: addon\globalPlugins\zKeybase\__init__.py:342
+#: addon\globalPlugins\zKeybase\__init__.py:317
+msgid "No se pudo abrir el archivo."
+msgstr "The file could not be opened."
+
+#: addon\globalPlugins\zKeybase\__init__.py:346
 msgid "Se a copiado la URL para el directorio de Keybase al portapapeles."
 msgstr "The Keybase directory URL has been copied to the clipboard."
 
-#: addon\globalPlugins\zKeybase\__init__.py:345
+#: addon\globalPlugins\zKeybase\__init__.py:349
 msgid "Se a copiado la URL para el archivo de Keybase al portapapeles."
 msgstr "Keybase file URL copied to clipboard."
 
-#: addon\globalPlugins\zKeybase\__init__.py:357
+#: addon\globalPlugins\zKeybase\__init__.py:356
+msgid "No se pudieron obtener las propiedades."
+msgstr "The properties could not be obtained."
+
+#: addon\globalPlugins\zKeybase\__init__.py:364
 msgid ""
 "ADVERTENCIA:\n"
 "\n"
@@ -79,7 +92,7 @@ msgstr ""
 "\n"
 "¿¿Are you sure you want to delete the {} directory?"
 
-#: addon\globalPlugins\zKeybase\__init__.py:364
+#: addon\globalPlugins\zKeybase\__init__.py:371
 msgid ""
 "ADVERTENCIA:\n"
 "\n"
@@ -93,27 +106,27 @@ msgstr ""
 "\n"
 "¿Are you sure you want to delete the {} file?"
 
-#: addon\globalPlugins\zKeybase\__init__.py:369
+#: addon\globalPlugins\zKeybase\__init__.py:376
 msgid "Pregunta"
 msgstr "Question"
 
-#: addon\globalPlugins\zKeybase\__init__.py:375
+#: addon\globalPlugins\zKeybase\__init__.py:382
 msgid "Se borro correctamente el directorio {}"
 msgstr "{} directory deleted successfully"
 
-#: addon\globalPlugins\zKeybase\__init__.py:380
+#: addon\globalPlugins\zKeybase\__init__.py:387
 msgid "No se pudo borrar el directorio {}"
 msgstr "Failed to delete directory {}"
 
-#: addon\globalPlugins\zKeybase\__init__.py:383
+#: addon\globalPlugins\zKeybase\__init__.py:390
 msgid "Se borro correctamente el fichero {}"
 msgstr "{} file deleted successfully"
 
-#: addon\globalPlugins\zKeybase\__init__.py:388
+#: addon\globalPlugins\zKeybase\__init__.py:395
 msgid "No se pudo borrar el fichero {}"
 msgstr "Failed to delete file {}"
 
-#: addon\globalPlugins\zKeybase\__init__.py:421
+#: addon\globalPlugins\zKeybase\__init__.py:428
 msgid ""
 "No se encontró la unidad virtual de Keybase.\n"
 "\n"
@@ -125,7 +138,7 @@ msgstr ""
 "Make sure the Keybase service is running and you are able to mount the "
 "configured virtual drive."
 
-#: addon\globalPlugins\zKeybase\__init__.py:429
+#: addon\globalPlugins\zKeybase\__init__.py:436
 msgid ""
 "No se pudo tener acceso a Keybase.exe.\n"
 "\n"
